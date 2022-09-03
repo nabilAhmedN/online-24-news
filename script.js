@@ -106,5 +106,31 @@ const toggleSpinner = isSpinner =>{
     }
 }
 
+const loadNewsDetails = async(news_id) =>{
+    const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayNewsDetails(data.data[0]);
+}
+const displayNewsDetails = news =>{
+    console.log(news);
+    console.log(news.author.name);
+    const modalTitle = document.getElementById('newsDetailModalLabel');
+    modalTitle.innerText = news.title;
+
+    const newsDetails = document.getElementById('news-details');
+    
+    newsDetails.innerHTML = `
+
+        <p>Author Name: ${news.author.name? news.author.name : 'No Name Found'}</p>
+        <p>Published Date: ${news.author.published_date? news.author.published_date : 'No published date Found'}</p>
+        <p>Rating: ${news.rating.number ? news.rating.number : 'No Rating Found'}</p>
+        <p>Badge: ${news.rating.badge ? news.rating.badge : 'No Badge Found'}</p>
+        <img src="${news.thumbnail_url}" alt="" >
+        <p>Total Veiw: ${news.total_view ? news.total_view : 'No Veiw Found'}</p>
+        <p>Details Information: ${news.details ? news.details : 'No details information Found'}</p>
+        
+    `;
+}
 
 loadNews('1');
