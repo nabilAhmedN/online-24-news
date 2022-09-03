@@ -24,3 +24,15 @@ const displayNewsCatagory = (news_category) =>{
     });
 }
 loadNewsCatagory();
+
+const loadNews = async(category_id,category_name) =>{
+    toggleSpinner(true);
+    console.log(category_id);
+    const url=  `https://openapi.programming-hero.com/api/news/category/${'0'+category_id}` 
+    const res = await fetch(url);
+    const data = await res.json();
+    displayNews(data.data);
+    const showNews = document.getElementById('input-feild');
+    const showNewsValue = `${data.data.length} items found for this category ${category_name}` ;
+    showNews.value = showNewsValue;
+}
