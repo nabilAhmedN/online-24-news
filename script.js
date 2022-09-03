@@ -1,9 +1,13 @@
 const loadNewsCatagory = async() =>{
     const url= `https://openapi.programming-hero.com/api/news/categories`
-    const res = await fetch(url);
-    const data = await res.json();
-    displayNewsCatagory(data.data.news_category);
-
+    try{
+        const res = await fetch(url);
+        const data = await res.json();
+        displayNewsCatagory(data.data.news_category);
+    }
+    catch(err){
+        alert(err);
+    }
 }
 const displayNewsCatagory = (news_category) =>{
     const allNewsCatagoryDiv = document.getElementById('news-div');
@@ -29,12 +33,17 @@ const loadNews = async(category_id,category_name) =>{
     toggleSpinner(true);
     console.log(category_id);
     const url=  `https://openapi.programming-hero.com/api/news/category/${'0'+category_id}` 
-    const res = await fetch(url);
-    const data = await res.json();
-    displayNews(data.data);
-    const showNews = document.getElementById('show-contant-feild');
-    const showNewsValue = `${data.data.length} items found for this category ${category_name}` ;
-    showNews.innerText = showNewsValue;
+    try{
+        const res = await fetch(url);
+        const data = await res.json();
+        displayNews(data.data);
+        const showNews = document.getElementById('show-contant-feild');
+        const showNewsValue = `${data.data.length} items found for this category ${category_name}` ;
+        showNews.innerText = showNewsValue;
+    }
+    catch(err){
+        alert(err)
+    }
 }
 const displayNews = (data) =>{
     
@@ -55,7 +64,7 @@ const displayNews = (data) =>{
         <div class="col-md-4">
             <img src="${news.image_url}" alt="" class="img-fluid h-100 ">
         </div>
-        <div class="col-md-8 p-5 ">
+        <div class="col-md-8 p-5">
             <h3>${news.title}</h3>
             <p>${news.details.length > 500 ? news.details.slice(0,500) +'...' : news.details}</p>
 
@@ -108,9 +117,14 @@ const toggleSpinner = isSpinner =>{
 
 const loadNewsDetails = async(news_id) =>{
     const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
-    const res = await fetch(url);
-    const data = await res.json();
-    displayNewsDetails(data.data[0]);
+    try{
+        const res = await fetch(url);
+        const data = await res.json();
+        displayNewsDetails(data.data[0]);
+    }
+    catch(err){
+        alert(err)
+    }
 }
 const displayNewsDetails = news =>{
     console.log(news);
