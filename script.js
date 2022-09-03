@@ -57,13 +57,13 @@ const displayNews = (data) =>{
         </div>
         <div class="col-md-8 p-5 ">
             <h3>${news.title}</h3>
-            <p>${news.details.length > 506 ? news.details.slice(0,506) +'...' : news.details }</p>
+            <p>${news.details.length > 500 ? news.details.slice(0,500) +'...' : news.details}</p>
 
                 <div class="d-flex align-items-center justify-content-between">
-                    <div class="d-flex align-items-center ">
+                    <div class="d-flex align-items-center">
                         <img src="${news.author.img}" alt="" height="30" class="rounded-circle">
-                        <div >
-                            <p>${news.author.name} </p>
+                        <div>
+                            <h5>${news.author.name}</h5>
                             <p>${news.author.published_date}</p>
                         </div>
                     </div>
@@ -133,4 +133,11 @@ const displayNewsDetails = news =>{
     `;
 }
 
-loadNews('1');
+loadNews('8');
+
+const goNewsSection = () => {
+    window.location.href = 'index.html';
+}
+const goBlogSection = () => {
+    window.location.href = 'blog.html';
+}
