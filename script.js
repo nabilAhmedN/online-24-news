@@ -1,5 +1,8 @@
+
+// Load data and add catagory
 const loadNewsCatagory = async() =>{
     const url= `https://openapi.programming-hero.com/api/news/categories`
+    // Error handler
     try{
         const res = await fetch(url);
         const data = await res.json();
@@ -9,11 +12,12 @@ const loadNewsCatagory = async() =>{
         alert(err);
     }
 }
+
+// Display All News Catagory
 const displayNewsCatagory = (news_category) =>{
     const allNewsCatagoryDiv = document.getElementById('news-div');
     let count = 0;
     news_category.forEach(soloNews => {
-        console.log(soloNews)
         count = count+1;
         const soloCatagory = document.createElement('button');
         soloCatagory.classList.add('btn');
@@ -27,11 +31,12 @@ const displayNewsCatagory = (news_category) =>{
         allNewsCatagoryDiv.appendChild(soloCatagory);
     });
 }
+
+// display the catagory by calling function
 loadNewsCatagory();
 
 const loadNews = async(category_id,category_name) =>{
     toggleSpinner(true);
-    console.log(category_id);
     const url=  `https://openapi.programming-hero.com/api/news/category/${'0'+category_id}` 
     try{
         const res = await fetch(url);
@@ -45,6 +50,8 @@ const loadNews = async(category_id,category_name) =>{
         alert(err)
     }
 }
+
+// news card
 const displayNews = (data) =>{
     
     // sort by view
@@ -53,12 +60,10 @@ const displayNews = (data) =>{
     newsContainer.textContent= '';
 
     data.forEach(news =>{
-        console.log(news);
         const newsDiv = document.createElement('div');
         newsDiv.classList.add('card');
         newsDiv.classList.add('mb-3');
         
-        console.log(news);
         newsDiv.innerHTML=`
         <div class="row">
         <div class="col-md-4">
@@ -105,6 +110,7 @@ const displayNews = (data) =>{
     toggleSpinner(false);
 }
 
+// spinner 
 const toggleSpinner = isSpinner =>{
     const spinnerSection = document.getElementById('spinner');
     if(isSpinner){
@@ -115,6 +121,7 @@ const toggleSpinner = isSpinner =>{
     }
 }
 
+// load data for modal
 const loadNewsDetails = async(news_id) =>{
     const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
     try{
@@ -126,9 +133,10 @@ const loadNewsDetails = async(news_id) =>{
         alert(err)
     }
 }
+
+// set modal inner html
 const displayNewsDetails = news =>{
-    console.log(news);
-    console.log(news.author.name);
+    
     const modalTitle = document.getElementById('newsDetailModalLabel');
     modalTitle.innerText = news.title;
 
@@ -149,6 +157,7 @@ const displayNewsDetails = news =>{
 
 loadNews('8');
 
+// conected blog and news page
 const goNewsSection = () => {
     window.location.href = 'index.html';
 }
