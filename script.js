@@ -106,4 +106,5 @@ const toggleSpinner = isSpinner =>{
     }
 }
 
+
 loadNews('1');
