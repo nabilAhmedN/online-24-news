@@ -68,7 +68,7 @@ const displayNews = (data) =>{
             <h3>${news.title}</h3>
             <p>${news.details.length > 500 ? news.details.slice(0,500) +'...' : news.details}</p>
 
-                <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center justify-content-between flex-sm-row flex-column">
                     <div class="d-flex align-items-center">
                         <img src="${news.author.img}" alt="" height="30" class="rounded-circle">
                         <div>
